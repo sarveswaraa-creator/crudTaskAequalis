@@ -1,0 +1,53 @@
+<div class="container">
+  <nz-card style="width: auto" [nzBordered]="false">
+    <app-addtask
+      *ngIf="isVisibleAddEditUser"
+      [isVisible]="isVisibleAddEditUser"
+      [editData]="selectData"
+      [actionType]="actionType"
+      (modalState)="modalAction($event)"
+    ></app-addtask>
+
+    <div class="body-container">
+      <div class="btn-container">
+        <ng-container
+          *ngFor="let btn of buttonConfig; let first = first; let last = last"
+        >
+          <button
+            nzTooltipTitle="{{ btn.name | uppercase }}"
+            nzTooltipPlacement="top"
+            nz-tooltip
+            class="btn"
+            nz-button
+            [disabled]="btn.disabled"
+            nzType="primary"
+            [ngClass]="{ 'last-btn': last, 'first-btn': first }"
+            (click)="action(btn.name)"
+          >
+            <i nz-icon [nzType]="btn.icon" nzTheme="outline"></i>
+          </button>
+        </ng-container>
+        <button
+          nzTooltipTitle="'Search'"
+          nzTooltipPlacement="top"
+          nz-tooltip
+          class="btn single-btn"
+          nz-button
+          nzType="primary"
+          (click)="searchAction()"
+        >
+          <i nz-icon nzType="search" nzTheme="outline"></i>
+        </button>
+      </div>
+      <div class="table-container">
+        <app-viewtask
+          [isVisibleSearchBar]="isVisibleSearchBar"
+          [sourceData]="assignTableData"
+          (selectedData)="getCheckedData($event)"
+        ></app-viewtask>
+      </div>
+    </div>
+  </nz-card>
+</div>
+
+<!-- Table -->

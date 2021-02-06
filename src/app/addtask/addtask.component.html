@@ -1,0 +1,89 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="modalTitle"
+  [nzFooter]="modalFooter"
+  (nzOnCancel)="handleCancel()"
+>
+  <ng-template #modalTitle>{{ modalConfig.title }}</ng-template>
+  <form nz-form [nzLayout]="'inline'" [formGroup]="assignTaskForm">
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your Password!">
+        <nz-input-group nzPrefixIcon="user">
+          <input
+            formControlName="name"
+            nz-input
+            type="text"
+            placeholder="Name"
+          />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your Password!">
+        <nz-input-group nzPrefixIcon="user">
+          <input
+            formControlName="assigneeName"
+            nz-input
+            type="text"
+            placeholder="Assignee Name"
+          />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your Password!">
+        <nz-input-group nzPrefixIcon="calendar">
+          <nz-date-picker
+            nzPlaceHolder="Start Date"
+            formControlName="startDate"
+          ></nz-date-picker>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your Password!">
+        <nz-input-group nzPrefixIcon="calendar">
+          <nz-date-picker
+            nzPlaceHolder="End Date"
+            formControlName="endDate"
+          ></nz-date-picker>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your Password!">
+        <nz-input-group nzPrefixIcon="field-time">
+          <input
+            formControlName="totalTime"
+            nz-input
+            type="number"
+            placeholder="Total Time"
+          />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your Password!">
+        <nz-input-group nzPrefixIcon="flag">
+          <nz-select
+            id="gender"
+            formControlName="status"
+            nzPlaceHolder="Status"
+          >
+            <nz-option nzValue="todo" nzLabel="To Do"></nz-option>
+            <nz-option nzValue="done" nzLabel="Done"></nz-option>
+            <nz-option nzValue="inprogress" nzLabel="In Progress"></nz-option>
+          </nz-select>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+
+  <ng-template #modalFooter>
+    <button nz-button nzType="default" (click)="handleCancel()">Cancel</button>
+    <button nz-button nzType="primary" (click)="handleOk()">Submit</button>
+  </ng-template>
+</nz-modal>
